@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3c1mlf4sw10f"]
+
+[ext_resource type="Script" path="res://scenes/examples/save system/CounterControl.gd" id="1_ltdtd"]
+[ext_resource type="Script" path="res://classes/custom/CustomButton.gd" id="2_b725v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_frmd1"]
+font_size = 96
+
+[node name="CounterControl" type="VBoxContainer" node_paths=PackedStringArray("counter_label")]
+size_flags_horizontal = 3
+script = ExtResource("1_ltdtd")
+counter_label = NodePath("CounterLabel")
+
+[node name="CounterLabel" type="Label" parent="."]
+layout_mode = 2
+text = "150"
+label_settings = SubResource("LabelSettings_frmd1")
+horizontal_alignment = 1
+
+[node name="CounterButtons" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PlusCounterButton" type="Button" parent="CounterButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 72
+text = "+"
+script = ExtResource("2_b725v")
+
+[node name="MinusCounterButton" type="Button" parent="CounterButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 72
+text = "-"
+script = ExtResource("2_b725v")
+
+[connection signal="pressed" from="CounterButtons/PlusCounterButton" to="." method="_on_plus_counter_button_pressed"]
+[connection signal="pressed" from="CounterButtons/MinusCounterButton" to="." method="_on_minus_counter_button_pressed"]

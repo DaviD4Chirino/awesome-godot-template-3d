@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://duu30ep312ekm"]
+
+[ext_resource type="Script" path="res://resources/ResolutionListData.gd" id="2_3y00j"]
+
+[sub_resource type="GDScript" id="GDScript_f2nl7"]
+script/source = "extends HBoxContainer
+
+@export var resolutions: ResolutionListData
+@export var option_button: OptionButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	generate_options()
+	pass  # Replace with function body.
+
+
+func generate_options() -> void:
+	var native_dimensions = DisplayServer.screen_get_size()
+	option_button.add_item(\"%dx%d (Native)\" % [native_dimensions.x, native_dimensions.y], 0)
+	if !resolutions:
+		return
+	if !resolutions.list.size() > 0:
+		return
+	for resolution in resolutions.list:
+		if resolution > native_dimensions:
+			continue
+		option_button.add_item(\"%dx%d\" % [resolution.x, resolution.y])
+
+
+func change_resolution(resolution: Vector2i) -> void:
+	get_window().content_scale_size = resolution
+
+
+func _on_option_button_item_selected(index: int):
+	if index == 0:
+		change_resolution(DisplayServer.screen_get_size())
+		return
+	change_resolution(resolutions.list[index])
+	pass  # Replace with function body.
+"
+
+[sub_resource type="Resource" id="Resource_shxqs"]
+script = ExtResource("2_3y00j")
+list = Array[Vector2i]([Vector2i(256, 144), Vector2i(426, 240), Vector2i(640, 360), Vector2i(856, 480), Vector2i(1280, 720), Vector2i(1920, 1080), Vector2i(2560, 1440)])
+
+[node name="ResolutionMode" type="HBoxContainer" node_paths=PackedStringArray("option_button")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 10
+script = SubResource("GDScript_f2nl7")
+resolutions = SubResource("Resource_shxqs")
+option_button = NodePath("OptionButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution:"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+fit_to_longest_item = false
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

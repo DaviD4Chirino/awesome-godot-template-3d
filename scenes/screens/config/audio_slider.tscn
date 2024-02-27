@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://qf6ti2ct3yb7"]
+
+[ext_resource type="Script" path="res://scenes/screens/config/audio_slider.gd" id="1_pwl6r"]
+[ext_resource type="Script" path="res://classes/custom/CustomHSlider.gd" id="2_3ecwa"]
+
+[node name="AudioSlider" type="VBoxContainer" node_paths=PackedStringArray("audio_bus_name_label", "volume_percentage_label", "volume_slider")]
+offset_right = 1147.0
+offset_bottom = 43.0
+script = ExtResource("1_pwl6r")
+audio_bus_name_label = NodePath("HBoxContainer/AudioBusName")
+volume_percentage_label = NodePath("HBoxContainer/VolumePercentage")
+volume_slider = NodePath("VolumeControl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AudioBusName" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master: "
+
+[node name="VolumePercentage" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "100%"
+
+[node name="VolumeControl" type="HSlider" parent="."]
+layout_mode = 2
+min_value = -60.0
+max_value = 10.0
+script = ExtResource("2_3ecwa")
+
+[connection signal="value_changed" from="VolumeControl" to="." method="_on_volume_control_value_changed"]

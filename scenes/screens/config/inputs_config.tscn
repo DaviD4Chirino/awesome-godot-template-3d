@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwuxhfr6uc10s"]
+
+[ext_resource type="PackedScene" uid="uid://cqusygian1lll" path="res://scenes/screens/config/input_button.tscn" id="1_24hfc"]
+[ext_resource type="Script" path="res://scenes/screens/config/inputs_config.gd" id="1_bllw3"]
+[ext_resource type="Resource" uid="uid://bmjqr6qj8kiso" path="res://resources/InputActionDictionary.tres" id="2_pcc3k"]
+
+[node name="inputs_config" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bllw3")
+input_actions = ExtResource("2_pcc3k")
+
+[node name="InputButton" parent="." instance=ExtResource("1_24hfc")]
+layout_mode = 2

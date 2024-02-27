@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://vpedsavx8fps"]
+
+[ext_resource type="Script" path="res://classes/custom/CustomButton.gd" id="1_fv7qu"]
+[ext_resource type="Script" path="res://scenes/examples/save system/save_system.gd" id="1_wv7rw"]
+[ext_resource type="PackedScene" uid="uid://c3c1mlf4sw10f" path="res://scenes/examples/save system/counter_control.tscn" id="2_esd5y"]
+
+[node name="SaveSystem" type="Control" node_paths=PackedStringArray("counters")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wv7rw")
+counters = [NodePath("MarginContainer/VBoxContainer/HBoxContainer2/CounterControl"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/CounterControl2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer2/CounterControl3")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Save Data"
+script = ExtResource("1_fv7qu")
+
+[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Load Data"
+script = ExtResource("1_fv7qu")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="CounterControl" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_esd5y")]
+layout_mode = 2
+
+[node name="CounterControl2" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_esd5y")]
+layout_mode = 2
+
+[node name="CounterControl3" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_esd5y")]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://biat56s5n0eww"]
+
+[ext_resource type="Script" path="res://scenes/screens/config/configuration_screen.gd" id="1_c3on6"]
+[ext_resource type="PackedScene" uid="uid://dwuxhfr6uc10s" path="res://scenes/screens/config/inputs_config.tscn" id="1_ub6ae"]
+[ext_resource type="PackedScene" uid="uid://cr5r8a1s33daf" path="res://scenes/screens/config/screen_mode.tscn" id="1_y20uq"]
+[ext_resource type="StyleBox" uid="uid://be3ny2lv2mri7" path="res://resources/panel_opaque.tres" id="2_3qx57"]
+[ext_resource type="PackedScene" uid="uid://d2d65r6gy5sye" path="res://scenes/screens/config/audio_config.tscn" id="2_csv1u"]
+[ext_resource type="Script" path="res://classes/custom/CustomButton.gd" id="3_0chcd"]
+[ext_resource type="Script" path="res://scenes/screens/config/restore_button.gd" id="3_aip03"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jusli"]
+font_size = 20
+
+[node name="ConfigurationScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_c3on6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.215686)
+
+[node name="margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="margin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/side_margin = 15
+theme_override_styles/panel = ExtResource("2_3qx57")
+tab_alignment = 1
+
+[node name="General" type="MarginContainer" parent="margin/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/VBoxContainer/TabContainer/General"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Video
+"
+label_settings = SubResource("LabelSettings_jusli")
+
+[node name="ScreenMode" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_y20uq")]
+layout_mode = 2
+
+[node name="separator" type="ColorRect" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.403922, 0.403922, 0.403922, 1)
+
+[node name="Title2" type="Label" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_jusli")
+
+[node name="AudioConfig" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_csv1u")]
+layout_mode = 2
+
+[node name="RestoreButton" type="Button" parent="margin/VBoxContainer/TabContainer/General/VBoxContainer" node_paths=PackedStringArray("restore_nodes")]
+layout_mode = 2
+tooltip_text = "Change the configuration options to the default"
+text = "Restore"
+script = ExtResource("3_aip03")
+restore_nodes = [NodePath("../ScrollContainer/MarginContainer/VBoxContainer/ScreenMode"), NodePath("../ScrollContainer/MarginContainer/VBoxContainer/AudioConfig")]
+
+[node name="Controls" type="MarginContainer" parent="margin/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/VBoxContainer/TabContainer/Controls"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="margin/VBoxContainer/TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/VBoxContainer/TabContainer/Controls/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="inputs_config" parent="margin/VBoxContainer/TabContainer/Controls/VBoxContainer/ScrollContainer/MarginContainer" instance=ExtResource("1_ub6ae")]
+layout_mode = 2
+
+[node name="RestoreButton" type="Button" parent="margin/VBoxContainer/TabContainer/Controls/VBoxContainer" node_paths=PackedStringArray("restore_nodes")]
+layout_mode = 2
+tooltip_text = "Change the configuration options to the default"
+text = "Restore"
+script = ExtResource("3_aip03")
+restore_nodes = [NodePath("../ScrollContainer/MarginContainer/inputs_config")]
+
+[node name="AcceptButton" type="Button" parent="margin/VBoxContainer"]
+layout_mode = 2
+text = "Accept
+"
+script = ExtResource("3_0chcd")
+
+[connection signal="pressed" from="margin/VBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]

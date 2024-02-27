@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="InputActionDictionary" load_steps=7 format=3 uid="uid://bmjqr6qj8kiso"]
+
+[ext_resource type="Script" path="res://resources/inputActionData.gd" id="1_axjdf"]
+[ext_resource type="Script" path="res://resources/inputActionDictionary.gd" id="2_uxkww"]
+
+[sub_resource type="Resource" id="Resource_dv30e"]
+resource_name = "ACTION_PAUSE"
+script = ExtResource("1_axjdf")
+action_name = &"ACTION_PAUSE"
+action_title = &"Pause"
+
+[sub_resource type="Resource" id="Resource_cd41q"]
+resource_name = "ACTION_START"
+script = ExtResource("1_axjdf")
+action_name = &"ACTION_START"
+action_title = &"Start"
+
+[sub_resource type="Resource" id="Resource_oxwxh"]
+resource_name = "ACTION_ACCEPT"
+script = ExtResource("1_axjdf")
+action_name = &"ACTION_ACCEPT"
+action_title = &"Accept"
+
+[sub_resource type="Resource" id="Resource_rsvj2"]
+resource_name = "ACTION_CANCEL"
+script = ExtResource("1_axjdf")
+action_name = &"ACTION_CANCEL"
+action_title = &"Cancel"
+
+[resource]
+script = ExtResource("2_uxkww")
+list = Array[ExtResource("1_axjdf")]([SubResource("Resource_dv30e"), SubResource("Resource_cd41q"), SubResource("Resource_oxwxh"), SubResource("Resource_rsvj2")])

@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2d65r6gy5sye"]
+
+[ext_resource type="Script" path="res://scenes/screens/config/audio_config.gd" id="1_6254l"]
+[ext_resource type="PackedScene" uid="uid://qf6ti2ct3yb7" path="res://scenes/screens/config/audio_slider.tscn" id="2_lftpm"]
+
+[node name="AudioConfig" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_6254l")
+
+[node name="Master" parent="." instance=ExtResource("2_lftpm")]
+layout_mode = 2
+
+[node name="Music" parent="." instance=ExtResource("2_lftpm")]
+layout_mode = 2
+audio_bus_name = 1
+
+[node name="AudioBusName" parent="Music/HBoxContainer" index="0"]
+text = "music: "
+
+[node name="SFX" parent="." instance=ExtResource("2_lftpm")]
+layout_mode = 2
+audio_bus_name = 2
+
+[node name="AudioBusName" parent="SFX/HBoxContainer" index="0"]
+text = "sfx: "
+
+[node name="UI" parent="." instance=ExtResource("2_lftpm")]
+layout_mode = 2
+audio_bus_name = 3
+
+[node name="AudioBusName" parent="UI/HBoxContainer" index="0"]
+text = "Ui: "
+
+[editable path="Master"]
+[editable path="Music"]
+[editable path="SFX"]
+[editable path="UI"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds4whqb8apmwn"]
+
+[ext_resource type="Script" path="res://scenes/screens/pause_menu.gd" id="1_5hson"]
+[ext_resource type="StyleBox" uid="uid://be3ny2lv2mri7" path="res://resources/panel_opaque.tres" id="1_ur6q0"]
+[ext_resource type="Script" path="res://classes/custom/CustomButton.gd" id="2_ugvg4"]
+[ext_resource type="PackedScene" uid="uid://biat56s5n0eww" path="res://scenes/screens/config/configuration_screen.tscn" id="4_ufvug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vod4s"]
+bg_color = Color(0.678431, 0, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6jiq"]
+bg_color = Color(0.392157, 0, 0.0862745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hqve"]
+bg_color = Color(0.615686, 0, 0.156863, 1)
+
+[node name="pause_menu" type="CanvasLayer" node_paths=PackedStringArray("options_screen")]
+process_mode = 3
+script = ExtResource("1_5hson")
+options_screen = NodePath("ConfigurationScreen")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.215686)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Control/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ur6q0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ColorRect/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+script = ExtResource("2_ugvg4")
+
+[node name="OptionsButton" type="Button" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+script = ExtResource("2_ugvg4")
+
+[node name="MainMenuButton" type="Button" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("2_ugvg4")
+
+[node name="QuitButton" type="Button" parent="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vod4s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w6jiq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2hqve")
+text = "Quit Game"
+script = ExtResource("2_ugvg4")
+
+[node name="ConfigurationScreen" parent="." instance=ExtResource("4_ufvug")]
+layer = 2
+visible = false
+
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

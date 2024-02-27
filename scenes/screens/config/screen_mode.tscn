@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr5r8a1s33daf"]
+
+[ext_resource type="Script" path="res://scenes/screens/config/screen_mode.gd" id="1_j7te7"]
+
+[node name="ScreenMode" type="HBoxContainer" node_paths=PackedStringArray("option_button")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_j7te7")
+option_button = NodePath("OptionButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Screen Mode: "
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+fit_to_longest_item = false
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

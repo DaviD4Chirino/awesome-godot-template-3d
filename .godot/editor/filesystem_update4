@@ -1,0 +1,17 @@
+res://autoloads/managers/AudioManager.gd
+res://autoloads/onstart.gd
+res://CONTRIBUTING.md
+res://scenes/screens/config/audio_config.gd
+res://scenes/screens/consent_screen.gd
+res://new_gd_script.gd
+res://scenes/screens/config/configuration_screen.tscn
+res://resources/InputActionDictionary.tres
+res://classes/custom/CustomHSlider.gd
+res://scenes/screens/config/audio_slider.gd
+res://scenes/screens/config/audio_config.tscn
+res://classes/custom/CustomAudioStreamPlayer.gd
+res://classes/SavePaths.gd
+res://addons/save_system/save_system.gd
+res://scenes/screens/config/screen_mode.gd
+res://scenes/screens/config/screen_mode.tscn
+res://scenes/screens/config/inputs_config.gd
