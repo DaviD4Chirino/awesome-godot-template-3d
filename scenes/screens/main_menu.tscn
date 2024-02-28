@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://biat56s5n0eww" path="res://scenes/screens/config/configuration_screen.tscn" id="3_cosxt"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("configuration_screen")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

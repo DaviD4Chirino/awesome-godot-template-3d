@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://classes/Level.gd" id="1_l8aqm"]
 [ext_resource type="PackedScene" uid="uid://ds4whqb8apmwn" path="res://scenes/screens/pause_menu.tscn" id="2_xx3c8"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("pause_menu")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("pause_menu")]
 process_mode = 3
 script = ExtResource("1_l8aqm")
 pause_menu = NodePath("pause_menu")

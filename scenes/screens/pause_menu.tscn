@@ -15,7 +15,7 @@ bg_color = Color(0.392157, 0, 0.0862745, 1)
 bg_color = Color(0.615686, 0, 0.156863, 1)
 
 [node name="pause_menu" type="CanvasLayer" node_paths=PackedStringArray("options_screen")]
-process_mode = 3
+process_mode = 2
 script = ExtResource("1_5hson")
 options_screen = NodePath("ConfigurationScreen")
 
@@ -106,7 +106,7 @@ script = ExtResource("2_ugvg4")
 layer = 2
 visible = false
 
-[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Control/ColorRect/MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
